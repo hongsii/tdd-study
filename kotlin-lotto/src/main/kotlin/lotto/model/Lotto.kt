@@ -1,6 +1,6 @@
 package lotto.model
 
-class Lotto(private val numbers: List<Int>) {
+class Lotto(private val numbers: List<Number>) {
 
     init {
         require(numbers.size == SIZE) { "$SIZE 개의 숫자가 필요합니다." }
