@@ -1,6 +1,8 @@
 package lotto.model
 
-class Lotto(private val numbers: List<Number>) {
+class Lotto(numbers: List<Number>) {
+
+    private val numbers: List<Number> = numbers.sorted().toList()
 
     init {
         require(numbers.size == SIZE) { "$SIZE 개의 숫자가 필요합니다." }
@@ -13,5 +15,9 @@ class Lotto(private val numbers: List<Number>) {
 
     companion object {
         const val SIZE = 6
+    }
+
+    override fun toString(): String {
+        return numbers.toString()
     }
 }
