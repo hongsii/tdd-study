@@ -11,7 +11,7 @@ class LottoTest extends Specification {
         def numbers = 1..size
 
         when:
-        def lotto = new Lotto(numbers)
+        def lotto = createLotto(numbers)
 
         then:
         lotto != null
@@ -26,7 +26,7 @@ class LottoTest extends Specification {
         def numbers = [1, 2, 3, 4, 5, 5]
 
         when:
-        new Lotto(numbers)
+        createLotto(numbers)
 
         then:
         thrown(IllegalArgumentException)
@@ -38,7 +38,7 @@ class LottoTest extends Specification {
         def numbers = (size > 0) ? 1..size : null
 
         when:
-        new Lotto(numbers)
+        createLotto(numbers)
 
         then:
         thrown IllegalArgumentException
@@ -66,5 +66,13 @@ class LottoTest extends Specification {
         [1, 2, 3, 4, 5, 6] | 6
         [1, 2, 3, 4, 5, 7] | 5
         [1, 2, 3, 4, 7, 8] | 4
+    }
+
+    static Lotto createLotto(IntRange intRange) {
+        return createLotto(intRange.toList())
+    }
+
+    static Lotto createLotto(List<Integer> numbers) {
+        return new Lotto(numbers.collect { new Number(it) }.toList())
     }
 }

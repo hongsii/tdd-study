@@ -9,15 +9,10 @@ class Lotto(numbers: List<Number>) {
         require(numbers.distinct().size == SIZE) { "중복되지 않은 $SIZE 개의 숫자가 필요합니다."}
     }
 
-    fun matchWith(other: Lotto): Int {
-        return numbers.intersect(other.numbers).count()
-    }
+    fun matchWith(other: Lotto) = numbers.intersect(other.numbers).count()
+    fun contains(number: Number) = numbers.contains(number)
 
     companion object {
         const val SIZE = 6
-    }
-
-    override fun toString(): String {
-        return numbers.toString()
     }
 }
