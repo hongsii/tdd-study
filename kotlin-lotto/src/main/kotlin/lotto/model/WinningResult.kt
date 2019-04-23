@@ -12,9 +12,10 @@ enum class WinningResult(private val matchResult: MatchResult) {
     constructor(matchCount: Int) : this(matchCount, false)
     constructor(matchCount: Int, matchBonusNumber: Boolean) : this(MatchResult(matchCount, matchBonusNumber))
 
-    fun isSameResult(matchResult: MatchResult): Boolean = when (this) {
-        SECOND -> this.matchResult == matchResult
-        else -> this.matchResult.isSameMatchCount(matchResult)
+    fun isSameResult(matchResult: MatchResult): Boolean = if (this.matchResult.matchBonusNumber) {
+        this.matchResult == matchResult
+    } else {
+        this.matchResult.isSameMatchCount(matchResult)
     }
 
     companion object {
