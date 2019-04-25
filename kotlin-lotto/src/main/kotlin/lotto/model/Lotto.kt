@@ -11,6 +11,7 @@ class Lotto(numbers: List<Number>) {
 
     fun matchWith(other: Lotto) = numbers.intersect(other.numbers).count()
     fun contains(number: Number) = numbers.contains(number)
+    fun getNumbers() = numbers
 
     companion object {
         const val SIZE = 6

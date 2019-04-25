@@ -25,4 +25,11 @@ class LottoGeneratorTest extends Specification {
         then:
         ticket.size() == count
     }
+
+    def "generate WinningLotto"() {
+        def lotto = lottoGenerator.generateWinningLotto()
+        println lotto
+        expect:
+        lotto != null
+    }
 }

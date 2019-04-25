@@ -1,8 +1,11 @@
 package lotto.model
 
-class LottoGenerator {
+object LottoGenerator {
 
-    private val numbers = (Number.MIN..Number.MAX).map { Number(it) }.toList()
+    fun generateWinningLotto(): WinningLotto {
+        val numbers = RandomNumberPicker.pick(Lotto.SIZE + 1)
+        return WinningLotto(Lotto(numbers.take(Lotto.SIZE)), numbers.last())
+    }
 
     fun generate(count: Int): List<Lotto> {
         return (1..count)
@@ -11,13 +14,6 @@ class LottoGenerator {
     }
 
     fun generate(): Lotto {
-        return Lotto(pickRandomNumbers())
-    }
-
-    private fun pickRandomNumbers(): List<Number> {
-        return numbers
-            .shuffled()
-            .take(Lotto.SIZE)
-            .toList()
+        return Lotto(RandomNumberPicker.pick(Lotto.SIZE))
     }
 }
