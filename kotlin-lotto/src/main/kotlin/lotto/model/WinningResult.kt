@@ -1,10 +1,5 @@
 package lotto.model
 
-data class MatchResult(val matchCount: Int, val matchBonusNumber: Boolean) {
-
-    fun isSameMatchCount(matchResult: MatchResult) = matchCount == matchResult.matchCount
-}
-
 enum class WinningResult(private val matchResult: MatchResult) {
 
     FIRST(6),
@@ -17,9 +12,10 @@ enum class WinningResult(private val matchResult: MatchResult) {
     constructor(matchCount: Int) : this(matchCount, false)
     constructor(matchCount: Int, matchBonusNumber: Boolean) : this(MatchResult(matchCount, matchBonusNumber))
 
-    fun isSameResult(matchResult: MatchResult): Boolean = when (this) {
-        SECOND -> this.matchResult == matchResult
-        else -> this.matchResult.isSameMatchCount(matchResult)
+    fun isSameResult(matchResult: MatchResult): Boolean = if (this.matchResult.matchBonusNumber) {
+        this.matchResult == matchResult
+    } else {
+        this.matchResult.isSameMatchCount(matchResult)
     }
 
     companion object {
