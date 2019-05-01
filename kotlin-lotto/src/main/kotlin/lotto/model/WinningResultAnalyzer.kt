@@ -7,4 +7,8 @@ class WinningResultAnalyzer(private val winningResults: List<WinningResult>) {
             .map { key -> key to winningResults.count { key == it } }
             .toMap()
     }
+
+    fun calculateWinningMoney(): Int {
+        return winningResults.sumBy { it.winningMoney }
+    }
 }

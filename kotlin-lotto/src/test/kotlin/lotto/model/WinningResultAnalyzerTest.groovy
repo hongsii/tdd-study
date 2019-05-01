@@ -20,4 +20,16 @@ class WinningResultAnalyzerTest extends Specification {
         summary.get(WinningResult.FIFTH) == 0
         summary.get(WinningResult.NONE) == 0
     }
+
+    def "calculate winning money from results"() {
+        given:
+        def winningResults = [WinningResult.FIRST, WinningResult.SECOND]
+        def analyzer = new WinningResultAnalyzer(winningResults)
+
+        when:
+        def winningMoney = analyzer.calculateWinningMoney()
+
+        then:
+        winningMoney == WinningResult.FIRST.winningMoney + WinningResult.SECOND.winningMoney
+    }
 }
