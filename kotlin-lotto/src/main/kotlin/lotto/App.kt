@@ -14,12 +14,16 @@ fun main() {
         .map { winningLotto.win(it) }
         .toList()
     val winningResultAnalyzer = WinningResultAnalyzer(winningResults)
+    val pricePerLotto = inputPricePerLotto()
     displaySummary(winningResultAnalyzer.getWinningCountFromResult())
     displayWinningMoney(winningResultAnalyzer.calculateWinningMoney())
+    displayProfitRate(winningResultAnalyzer.calculateProfitRate(pricePerLotto))
 }
 
-fun inputBuyingCount(): Int = input("로또 개수 : ") { readLine()!!.toInt() }
-fun <T> input(message: String, operation: () -> T): T {
+fun inputBuyingCount(): Int = inputNumber("로또 개수 : ")
+fun inputPricePerLotto(): Int = inputNumber("한장당 가격 : ")
+fun inputNumber(message: String): Int = input(message) { readLine()!!.toInt() }
+private fun <T> input(message: String, operation: () -> T): T {
     while (true) {
         try {
             print(message)
@@ -32,6 +36,7 @@ fun <T> input(message: String, operation: () -> T): T {
 
 fun displaySummary(winningCounter: Map<WinningResult, Int>) = winningCounter.entries.forEach { println("${WinningResultCharacter.valueOf(it.key.toString())} : ${it.value}") }
 fun displayWinningMoney(calculateWinningMoney: Int) = println("\n당첨 금액 : $calculateWinningMoney")
+fun displayProfitRate(profitRate: Int) = println("수익률 : $profitRate%")
 
 enum class WinningResultCharacter(val character: String) {
 

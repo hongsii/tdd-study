@@ -1,5 +1,7 @@
 package lotto.model
 
+import kotlin.math.roundToInt
+
 class WinningResultAnalyzer(private val winningResults: List<WinningResult>) {
 
     fun getWinningCountFromResult(): Map<WinningResult, Int> {
@@ -10,5 +12,11 @@ class WinningResultAnalyzer(private val winningResults: List<WinningResult>) {
 
     fun calculateWinningMoney(): Int {
         return winningResults.sumBy { it.winningMoney }
+    }
+
+    fun calculateProfitRate(pricePerLotto: Int): Int {
+        val totalBuyingMoney = winningResults.size * pricePerLotto
+        val winningMoney = calculateWinningMoney().toDouble()
+        return (((winningMoney - totalBuyingMoney) / totalBuyingMoney) * 100).roundToInt()
     }
 }

@@ -32,4 +32,22 @@ class WinningResultAnalyzerTest extends Specification {
         then:
         winningMoney == WinningResult.FIRST.winningMoney + WinningResult.SECOND.winningMoney
     }
+
+    def "calcuate profit rate from results"() {
+        given:
+        def analyzer = new WinningResultAnalyzer(winningResults)
+        def pricePerLotto = 5000
+
+        when:
+        def actual = analyzer.calculateProfitRate(pricePerLotto)
+
+        then:
+        actual == profitRate
+
+        where:
+        winningResults                                                | profitRate
+        [WinningResult.FIFTH, WinningResult.FIFTH]                    | 0
+        [WinningResult.NONE, WinningResult.FOURTH]                    | 400
+        [WinningResult.NONE, WinningResult.NONE, WinningResult.FIFTH] | -67
+    }
 }
