@@ -1,19 +1,16 @@
 package lotto
 
 import lotto.model.LottoGenerator
+import lotto.model.LottoTicket
 import lotto.model.WinningResult
-import lotto.model.WinningResultAnalyzer
 
 fun main() {
     val buyingCount = inputBuyingCount()
+    val ticket = LottoTicket(LottoGenerator.generate(buyingCount))
 
     val winningLotto = LottoGenerator.generateWinningLotto()
-    val ticket = LottoGenerator.generate(buyingCount)
+    val winningResultAnalyzer = ticket.win(winningLotto)
 
-    val winningResults = ticket
-        .map { winningLotto.win(it) }
-        .toList()
-    val winningResultAnalyzer = WinningResultAnalyzer(winningResults)
     val pricePerLotto = inputPricePerLotto()
     displaySummary(winningResultAnalyzer.getWinningCountFromResult())
     displayWinningMoney(winningResultAnalyzer.calculateWinningMoney())
