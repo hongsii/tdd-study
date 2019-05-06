@@ -1,23 +1,21 @@
 package lotto
 
-import lotto.model.LottoGenerator
-import lotto.model.LottoTicket
+import lotto.model.LottoSimulator
+import lotto.model.SimulationOption
 import lotto.model.WinningResult
 
 fun main() {
-    val buyingCount = inputBuyingCount()
-    val ticket = LottoTicket(LottoGenerator.generate(buyingCount))
-
-    val winningLotto = LottoGenerator.generateWinningLotto()
-    val winningResultAnalyzer = ticket.win(winningLotto)
-
-    val pricePerLotto = inputPricePerLotto()
-    displaySummary(winningResultAnalyzer.getWinningCountFromResult())
-    displayWinningMoney(winningResultAnalyzer.calculateWinningMoney())
-    displayProfitRate(winningResultAnalyzer.calculateProfitRate(pricePerLotto))
+    val simulationOperation = SimulationOption(
+        lottoCount = inputLottoCount(),
+        pricePerLotto = inputPricePerLotto()
+    )
+    val simulationResult = LottoSimulator.simulate(simulationOperation)
+    displaySummary(simulationResult.winningSummary)
+    displayWinningMoney(simulationResult.winningMoney)
+    displayProfitRate(simulationResult.profitRate)
 }
 
-fun inputBuyingCount(): Int = inputNumber("로또 개수 : ")
+fun inputLottoCount(): Int = inputNumber("로또 개수 : ")
 fun inputPricePerLotto(): Int = inputNumber("한장당 가격 : ")
 fun inputNumber(message: String): Int = input(message) { readLine()!!.toInt() }
 private fun <T> input(message: String, operation: () -> T): T {
