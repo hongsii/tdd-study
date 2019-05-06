@@ -2,6 +2,7 @@ package lotto
 
 import lotto.model.LottoSimulator
 import lotto.model.SimulationOption
+import lotto.model.SimulationResult
 import lotto.model.WinningResult
 
 fun main() {
@@ -10,13 +11,11 @@ fun main() {
         pricePerLotto = inputPricePerLotto()
     )
     val simulationResult = LottoSimulator.simulate(simulationOperation)
-    displaySummary(simulationResult.winningSummary)
-    displayWinningMoney(simulationResult.winningMoney)
-    displayProfitRate(simulationResult.profitRate)
+    displaySimulationResult(simulationResult)
 }
 
-fun inputLottoCount(): Int = inputNumber("로또 개수 : ")
-fun inputPricePerLotto(): Int = inputNumber("한장당 가격 : ")
+fun inputLottoCount(): Int = inputNumber("# 로또 개수 : ")
+fun inputPricePerLotto(): Int = inputNumber("# 한장당 가격 : ")
 fun inputNumber(message: String): Int = input(message) { readLine()!!.toInt() }
 private fun <T> input(message: String, operation: () -> T): T {
     while (true) {
@@ -29,9 +28,21 @@ private fun <T> input(message: String, operation: () -> T): T {
     }
 }
 
-fun displaySummary(winningCounter: Map<WinningResult, Int>) = winningCounter.entries.forEach { println("${WinningResultCharacter.valueOf(it.key.toString())} : ${it.value}") }
-fun displayWinningMoney(calculateWinningMoney: Int) = println("\n당첨 금액 : $calculateWinningMoney")
-fun displayProfitRate(profitRate: Int) = println("수익률 : $profitRate%")
+fun displaySimulationResult(simulationResult: SimulationResult) = println(
+        """
+        |
+        |# 시뮬레이션 결과
+        |-------------
+        |${makeSummaryToString(simulationResult.winningSummary)}
+        |-------------
+        |> 당첨 금액 : ${simulationResult.winningMoney}
+        |> 수익률 : ${simulationResult.profitRate}%
+        |
+        """.trimMargin()
+    )
+private fun makeSummaryToString(winningCounter: Map<WinningResult, Int>) = winningCounter.entries
+    .map { "${WinningResultCharacter.valueOf(it.key.toString())} : ${it.value}" }
+    .joinToString("\n")
 
 enum class WinningResultCharacter(val character: String) {
 
