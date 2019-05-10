@@ -13,12 +13,12 @@ class WinningResultAnalyzerTest extends Specification {
         def summary = analyzer.getWinningCountFromResult()
 
         then:
-        summary.get(WinningResult.FIRST) == 1
-        summary.get(WinningResult.SECOND) == 2
-        summary.get(WinningResult.THIRD) == 1
-        summary.get(WinningResult.FOURTH) == 0
-        summary.get(WinningResult.FIFTH) == 0
-        summary.get(WinningResult.NONE) == 0
+        summary.get(WinningResult.FIRST) == new WinningSummary(1, 25)
+        summary.get(WinningResult.SECOND) == new WinningSummary(2, 50)
+        summary.get(WinningResult.THIRD) == new WinningSummary(1, 25)
+        summary.get(WinningResult.FOURTH) == new WinningSummary(0, 0)
+        summary.get(WinningResult.FIFTH) == new WinningSummary(0, 0)
+        summary.get(WinningResult.NONE) == new WinningSummary(0, 0)
     }
 
     def "calculate winning money from results"() {

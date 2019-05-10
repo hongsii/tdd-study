@@ -1,9 +1,6 @@
 package lotto
 
-import lotto.model.LottoSimulator
-import lotto.model.SimulationOption
-import lotto.model.SimulationResult
-import lotto.model.WinningResult
+import lotto.model.*
 
 fun main() {
     val simulationOperation = SimulationOption(
@@ -40,8 +37,8 @@ fun displaySimulationResult(simulationResult: SimulationResult) = println(
         |
         """.trimMargin()
     )
-private fun makeSummaryToString(winningCounter: Map<WinningResult, Int>) = winningCounter.entries
-    .map { "${WinningResultCharacter.valueOf(it.key.toString())} : ${it.value}" }
+private fun makeSummaryToString(winningCounter: Map<WinningResult, WinningSummary>) = winningCounter.entries
+    .map { "${WinningResultCharacter.valueOf(it.key.toString())} : ${it.value.winningCount} (${it.value.percentage})" }
     .joinToString("\n")
 
 enum class WinningResultCharacter(val character: String) {

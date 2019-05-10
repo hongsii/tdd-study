@@ -17,4 +17,4 @@ object LottoSimulator {
 }
 
 data class SimulationOption(val lottoCount: Int, val pricePerLotto: Int)
-data class SimulationResult(val winningSummary: Map<WinningResult, Int>, val winningMoney: Int, val profitRate: Int)
+data class SimulationResult(val winningSummary: Map<WinningResult, WinningSummary>, val winningMoney: Int, val profitRate: Int)
