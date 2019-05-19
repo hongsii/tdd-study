@@ -39,16 +39,24 @@ fun displaySimulationResult(simulationResult: SimulationResult) = println(
         |
         """.trimMargin()
     )
-private fun makeSummaryToString(winningCounter: Map<WinningResult, WinningSummary>) = winningCounter.entries
-    .map { (key, value) -> "${WinningResultCharacter.valueOf(key.toString())} : ${value.winningCount} (${formatToPercentage(value.percentage, 2)})" }
-    .joinToString("\n")
+private fun makeSummaryToString(winningCounter: Map<WinningResult, WinningSummary>) =
+    winningCounter.entries.joinToString("\n") {
+            (key, value) ->"${WinningResultCharacter.valueOf(key.toString())} : ${value.winningCount} (${formatToPercentage(value.percentage, 2)})"
+    }
 
-private fun formatToPercentage(value: Double, point: Int): String {
-    val pointFormat: String = if (point > 0) ".${"#".repeat(point)}" else ""
-    val decimalFormat = DecimalFormat("0$pointFormat")
-    decimalFormat.roundingMode = RoundingMode.HALF_UP
-    return "${decimalFormat.format(value)}%"
-}
+private fun formatToPercentage(value: Double, point: Int): String = "#".repeat(point)
+    .run {
+        if (isEmpty()) this else ".$this"
+    }
+    .run {
+        "0$this'%'"
+    }
+    .run {
+        DecimalFormat(this).run {
+            roundingMode = RoundingMode.HALF_UP
+            format(value)
+        }
+    }
 
 enum class WinningResultCharacter(private val character: String) {
 

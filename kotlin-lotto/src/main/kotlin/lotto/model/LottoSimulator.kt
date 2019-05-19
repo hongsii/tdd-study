@@ -8,11 +8,13 @@ object LottoSimulator {
 
         val winningResultAnalyzer = WinningResultAnalyzer(lottoTicket.win(winningLotto))
 
-        return SimulationResult(
-            winningSummary = winningResultAnalyzer.getWinningCountFromResult(),
-            winningMoney = winningResultAnalyzer.calculateWinningMoney(),
-            profitRate = winningResultAnalyzer.calculateProfitRate(simulationOption.pricePerLotto)
-        )
+        return with(winningResultAnalyzer) {
+            SimulationResult(
+                winningSummary = getWinningCountFromResult(),
+                winningMoney = calculateWinningMoney(),
+                profitRate = calculateProfitRate(simulationOption.pricePerLotto)
+            )
+        }
     }
 }
 
