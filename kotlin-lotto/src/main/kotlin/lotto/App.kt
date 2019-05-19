@@ -1,6 +1,8 @@
 package lotto
 
 import lotto.model.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 fun main() {
     val simulationOperation = SimulationOption(
@@ -33,15 +35,22 @@ fun displaySimulationResult(simulationResult: SimulationResult) = println(
         |${makeSummaryToString(simulationResult.winningSummary)}
         |-------------
         |> 당첨 금액 : ${simulationResult.winningMoney}
-        |> 수익률 : ${simulationResult.profitRate}%
+        |> 수익률 : ${formatToPercentage(simulationResult.profitRate, 0)}
         |
         """.trimMargin()
     )
 private fun makeSummaryToString(winningCounter: Map<WinningResult, WinningSummary>) = winningCounter.entries
-    .map { "${WinningResultCharacter.valueOf(it.key.toString())} : ${it.value.winningCount} (${it.value.percentage})" }
+    .map { (key, value) -> "${WinningResultCharacter.valueOf(key.toString())} : ${value.winningCount} (${formatToPercentage(value.percentage, 2)})" }
     .joinToString("\n")
 
-enum class WinningResultCharacter(val character: String) {
+private fun formatToPercentage(value: Double, point: Int): String {
+    val pointFormat: String = if (point > 0) ".${"#".repeat(point)}" else ""
+    val decimalFormat = DecimalFormat("0$pointFormat")
+    decimalFormat.roundingMode = RoundingMode.HALF_UP
+    return "${decimalFormat.format(value)}%"
+}
+
+enum class WinningResultCharacter(private val character: String) {
 
     FIRST("1등"), SECOND("2등"), THIRD("3등"), FOURTH("4등"), FIFTH("5등"), NONE("꽝!");
 

@@ -48,6 +48,6 @@ class WinningResultAnalyzerTest extends Specification {
         winningResults                                                | profitRate
         [WinningResult.FIFTH, WinningResult.FIFTH]                    | 0
         [WinningResult.NONE, WinningResult.FOURTH]                    | 400
-        [WinningResult.NONE, WinningResult.NONE, WinningResult.FIFTH] | -67
+        [WinningResult.NONE, WinningResult.NONE, WinningResult.FIFTH] | -66.66666666666666
     }
 }
