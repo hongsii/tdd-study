@@ -5,5 +5,6 @@
     * [Kotlin](https://github.com/hongsii/tdd-study/tree/master/kotlin-lotto)
 * 숫자 야구
     * [Java](https://github.com/hongsii/tdd-study/tree/master/java-baseball-game)
+    * [Java](https://github.com/hongsii/tdd-study/tree/master/kotlin-baseball-game)
 * 블랙잭
     * [Java](https://github.com/hongsii/tdd-study/tree/master/java-blackjack)
