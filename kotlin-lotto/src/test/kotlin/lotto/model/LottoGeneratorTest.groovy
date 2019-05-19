@@ -27,9 +27,7 @@ class LottoGeneratorTest extends Specification {
     }
 
     def "generate WinningLotto"() {
-        def lotto = lottoGenerator.generateWinningLotto()
-        println lotto
         expect:
-        lotto != null
+        lottoGenerator.generateWinningLotto() != null
     }
 }
