@@ -1,4 +1,4 @@
-package baseballgame
+package baseballgame.model
 
 class Number private constructor(val value: Int) {
 
@@ -14,6 +14,10 @@ class Number private constructor(val value: Int) {
         private val CACHE: MutableMap<Int, Number> = mutableMapOf()
 
         @JvmStatic
-        fun of(value: Int): Number = CACHE.getOrPut(value) { Number(value) }
+        fun of(value: Int): Number = CACHE.getOrPut(value) {
+            Number(
+                value
+            )
+        }
     }
 }

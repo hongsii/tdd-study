@@ -1,5 +1,6 @@
-package baseballgame
+package baseballgame.model
 
+import baseballgame.model.Number
 import spock.lang.Specification
 
 class NumberTest extends Specification {
