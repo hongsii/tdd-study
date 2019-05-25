@@ -3,6 +3,8 @@ package baseballgame.model
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import static baseballgame.model.MatchResult.*
+
 class NumbersTest extends Specification {
 
     def "Numbers must have valid size"() {
@@ -44,12 +46,12 @@ class NumbersTest extends Specification {
 
         where:
         numbers   || expected
-        [1, 2, 3] || ["STRIKE", "STRIKE", "STRIKE"]
-        [1, 2, 4] || ["STRIKE", "STRIKE", "OUT"]
-        [1, 4, 5] || ["STRIKE", "OUT"   , "OUT"]
-        [1, 3, 4] || ["STRIKE", "BALL"  , "OUT"]
-        [1, 3, 2] || ["STRIKE", "BALL"  , "BALL"]
-        [3, 1, 2] || ["BALL"  , "BALL"  , "BALL"]
-        [4, 5, 6] || ["OUT"   , "OUT"   , "OUT"]
+        [1, 2, 3] || [STRIKE, STRIKE, STRIKE]
+        [1, 2, 4] || [STRIKE, STRIKE, OUT]
+        [1, 4, 5] || [STRIKE, OUT   , OUT]
+        [4, 5, 6] || [OUT   , OUT   , OUT]
+        [1, 3, 4] || [STRIKE, BALL  , OUT]
+        [1, 3, 2] || [STRIKE, BALL  , BALL]
+        [3, 1, 2] || [BALL  , BALL  , BALL]
     }
 }

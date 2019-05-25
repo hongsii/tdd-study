@@ -13,30 +13,22 @@ class Numbers(val numbers: List<Number>) {
         const val SIZE = 3
 
         @JvmStatic
-        fun of(rawNumbers: List<Int>): Numbers = Numbers(
+        fun of(rawNumbers: List<Int>) = Numbers(
             rawNumbers
                 .map { Number.of(it) }
                 .toList()
         )
     }
 
-    fun match(other: Numbers): List<String> {
+    fun match(other: Numbers): List<MatchResult> {
         return numbers.withIndex()
             .map { other.matchByEach(it) }
             .toList()
     }
 
-    private fun matchByEach(number: IndexedValue<Number>): String {
+    private fun matchByEach(number: IndexedValue<Number>): MatchResult {
         val hasNumber = numbers.contains(number.value)
         val isSameLocation = numbers[number.index] == number.value
-        return if (hasNumber) {
-            if (isSameLocation) {
-                "STRIKE"
-            } else {
-                "BALL"
-            }
-        } else {
-            "OUT"
-        }
+        return MatchResult.of(hasNumber, isSameLocation)
     }
 }
