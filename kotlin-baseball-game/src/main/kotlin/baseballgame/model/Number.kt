@@ -1,6 +1,6 @@
 package baseballgame.model
 
-class Number private constructor(val value: Int) {
+data class Number private constructor(val value: Int) {
 
     init {
         require(value in MIN..MAX) { "$MIN~$MAX 까지의 숫자만 가능합니다."}
