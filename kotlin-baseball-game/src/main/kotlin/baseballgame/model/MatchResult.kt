@@ -9,7 +9,8 @@ enum class MatchResult(val hasNumber: Boolean, val isSameLocation: Boolean) {
     companion object {
 
         @JvmStatic
-        fun of(hasNumber: Boolean, isSameLocation: Boolean) = values()
-            .first { it.hasNumber == hasNumber && it.isSameLocation == isSameLocation }
+        fun of(hasNumber: Boolean, isSameLocation: Boolean) =
+            values()
+                .first { it.hasNumber == hasNumber && it.isSameLocation == isSameLocation }
     }
 }
