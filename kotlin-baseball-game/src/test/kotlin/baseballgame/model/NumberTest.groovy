@@ -33,6 +33,6 @@ class NumberTest extends Specification {
     def "Number can be cached"() {
         expect:
         Number.of(Number.MIN) == Number.of(Number.MIN)
-        new Number(Number.MIN) != new Number(Number.MIN)
+        !new Number(Number.MIN).is(new Number(Number.MIN))
     }
 }

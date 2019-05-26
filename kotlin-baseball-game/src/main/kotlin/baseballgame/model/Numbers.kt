@@ -1,6 +1,6 @@
 package baseballgame.model
 
-class Numbers(val numbers: List<Number>) {
+data class Numbers(val numbers: List<Number>) {
 
     init {
         val size = numbers.size
@@ -13,11 +13,16 @@ class Numbers(val numbers: List<Number>) {
         const val SIZE = 3
 
         @JvmStatic
-        fun of(rawNumbers: List<Int>) = Numbers(
-            rawNumbers
-                .map { Number.of(it) }
-                .toList()
-        )
+        fun from(rawNumbers: String) = rawNumbers
+            .toCharArray()
+            .map { it.toString().toInt() }
+            .let { of(it) }
+
+        @JvmStatic
+        fun of(rawNumbers: List<Int>) = rawNumbers
+            .map { Number.of(it) }
+            .toList()
+            .let { Numbers(it) }
     }
 
     fun match(other: Numbers): List<MatchResult> {

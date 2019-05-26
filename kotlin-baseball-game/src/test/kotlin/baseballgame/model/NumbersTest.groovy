@@ -54,4 +54,9 @@ class NumbersTest extends Specification {
         [1, 3, 2] || [STRIKE, BALL  , BALL]
         [3, 1, 2] || [BALL  , BALL  , BALL]
     }
+
+    def "parse string to numbers successfully"() {
+        expect:
+        Numbers.from("123") == Numbers.of([1, 2, 3])
+    }
 }
