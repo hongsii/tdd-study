@@ -1,7 +1,6 @@
 package baseballgame.console
 
 import baseballgame.model.GuessResult
-import baseballgame.model.MatchResult
 import baseballgame.model.MatchResult.*
 
 class ConsoleInput {
@@ -27,21 +26,36 @@ class ConsoleOutput {
 
     companion object {
 
-        fun displayWinningMessage() = println("승리했습니다!")
+        fun displayWinningMessage(history: List<GuessResult>) =
+            println("\n\n승리했습니다!")
+                .also { displayHeader() }
+                .also {
+                    history
+                        .withIndex()
+                        .map { "${"%2d".format(it.index + 1)} : ${formatTrialNumbers(it.value)} -> ${formatResult(it.value)}" }
+                        .forEach(::println)
+                }
+                .also { displayHeader() }
         fun displayGuessResult(guessResult: GuessResult) =
+            println("결과 : ${formatResult(guessResult)}")
+
+        private fun displayHeader() = println("======================")
+
+        private fun formatTrialNumbers(guessResult: GuessResult) =
+            guessResult
+                .trialNumbers
+                .joinToString("") { it.value.toString() }
+
+        private fun formatResult(guessResult: GuessResult) =
             guessResult
                 .getCountOfEachMatchResult()
                 .entries
-                .joinToString("") { formatResult(it) }
-                .also {
-                    println("결과 : $it")
+                .joinToString("") {
+                    when (it.key) {
+                        STRIKE -> "S"
+                        BALL -> "B"
+                        OUT -> "O"
+                    } + it.value
                 }
-
-        private fun formatResult(matchResult: Map.Entry<MatchResult, Int>) =
-            when (matchResult.key) {
-                STRIKE -> "S"
-                BALL -> "B"
-                OUT -> "O"
-            } + matchResult.value
     }
 }

@@ -7,7 +7,8 @@ data class GuessResult(
 
     fun win(): Boolean = matchResults.all { it == MatchResult.STRIKE }
     fun getCountOfEachMatchResult(): Map<MatchResult, Int> =
-        matchResults
-            .groupingBy { it }
-            .eachCount()
+        MatchResult.values()
+            .map { result -> result to matchResults.count { result == it } }
+            .filter { it.second > 0 }
+            .toMap()
 }

@@ -1,15 +1,17 @@
 package baseballgame.model
 
 class BaseballGame(
-    private var trialCount: Int,
-    private val answer: Numbers
+    private val answer: Numbers,
+    private val _history: MutableList<GuessResult>
 ) {
 
-    constructor(answer: Numbers) : this(0, answer)
+    val history: List<GuessResult> get() =  _history
+
+    constructor(answer: Numbers) : this(answer, mutableListOf())
 
     fun guess(rawGuessNumbers: String): GuessResult {
         val guessNumbers = Numbers.from(rawGuessNumbers)
         return GuessResult(guessNumbers.numbers, answer.match(guessNumbers))
-            .also { trialCount++ }
+            .also { _history.add(it) }
     }
 }

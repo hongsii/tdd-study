@@ -12,7 +12,7 @@ fun main() {
         val guessNumbers = ConsoleInput.inputGuessNumbers()
         val guessResult = baseballGame.guess(guessNumbers)
         if (guessResult.win()) {
-            ConsoleOutput.displayWinningMessage()
+            ConsoleOutput.displayWinningMessage(baseballGame.history)
             break
         } else {
             ConsoleOutput.displayGuessResult(guessResult)
