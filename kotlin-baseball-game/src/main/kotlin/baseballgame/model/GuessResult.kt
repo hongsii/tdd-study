@@ -6,4 +6,8 @@ data class GuessResult(
 ) {
 
     fun win(): Boolean = matchResults.all { it == MatchResult.STRIKE }
+    fun getCountOfEachMatchResult(): Map<MatchResult, Int> =
+        matchResults
+            .groupingBy { it }
+            .eachCount()
 }
