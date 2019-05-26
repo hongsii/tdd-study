@@ -6,15 +6,17 @@ object LottoSimulator {
         val winningLotto = LottoGenerator.generateWinningLotto()
         val lottoTicket = LottoTicket(LottoGenerator.generate(simulationOption.lottoCount))
 
-        val winningResultAnalyzer = lottoTicket.win(winningLotto)
+        val winningResultAnalyzer = WinningResultAnalyzer(lottoTicket.win(winningLotto))
 
-        return SimulationResult(
-            winningSummary = winningResultAnalyzer.getWinningCountFromResult(),
-            winningMoney = winningResultAnalyzer.calculateWinningMoney(),
-            profitRate = winningResultAnalyzer.calculateProfitRate(simulationOption.pricePerLotto)
-        )
+        return with(winningResultAnalyzer) {
+            SimulationResult(
+                winningSummary = getWinningCountFromResult(),
+                winningMoney = calculateWinningMoney(),
+                profitRate = calculateProfitRate(simulationOption.pricePerLotto)
+            )
+        }
     }
 }
 
 data class SimulationOption(val lottoCount: Int, val pricePerLotto: Int)
-data class SimulationResult(val winningSummary: Map<WinningResult, WinningSummary>, val winningMoney: Int, val profitRate: Int)
+data class SimulationResult(val winningSummary: Map<WinningResult, WinningSummary>, val winningMoney: Int, val profitRate: Double)

@@ -1,32 +1,23 @@
 package lotto.model
 
-import java.math.RoundingMode
-import java.text.DecimalFormat
-import kotlin.math.roundToInt
-
 class WinningResultAnalyzer(private val winningResults: List<WinningResult>) {
 
-    fun getWinningCountFromResult(): Map<WinningResult, WinningSummary> {
-        val decimalFormat = DecimalFormat("#.##")
-        decimalFormat.roundingMode = RoundingMode.HALF_UP
-        return WinningResult.values()
-            .map { key -> key to winningResults.count { key == it } }
-            .map { it.first to WinningSummary(it.second, decimalFormat.format((it.second.toDouble() / winningResults.size) * 100)) }
-            .toMap()
-    }
+    fun getWinningCountFromResult(): Map<WinningResult, WinningSummary> = WinningResult.values()
+        .map { key ->
+            val winningCount = winningResults.count { key == it }
+            key to WinningSummary(winningCount, calculateWinningPercentage(winningCount))
+        }
+        .toMap()
 
-    fun calculateWinningMoney(): Int {
-        return winningResults.sumBy { it.winningMoney }
-    }
+    private fun calculateWinningPercentage(winningCount: Int): Double = (winningCount.toDouble() / winningResults.size) * 100
 
-    fun calculateProfitRate(pricePerLotto: Int): Int {
+    fun calculateWinningMoney(): Int = winningResults.sumBy { it.winningMoney }
+
+    fun calculateProfitRate(pricePerLotto: Int): Double {
         val totalBuyingMoney = winningResults.size * pricePerLotto
         val winningMoney = calculateWinningMoney().toDouble()
-        return (((winningMoney - totalBuyingMoney) / totalBuyingMoney) * 100).roundToInt()
+        return (((winningMoney - totalBuyingMoney) / totalBuyingMoney) * 100)
     }
 }
 
-data class WinningSummary(val winningCount: Int, val percentage: Double) {
-
-    constructor(winningCount: Int, percentage: String) : this(winningCount, percentage.toDouble())
-}
+data class WinningSummary(val winningCount: Int, val percentage: Double)

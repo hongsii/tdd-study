@@ -11,7 +11,4 @@ class WinningLotto(private val winningLotto: Lotto, private val bonusNumber: Num
         val matchBonusNumber = lotto.contains(bonusNumber)
         return WinningResult.of(MatchResult(matchCount, matchBonusNumber))
     }
-
-    fun getLotto() = winningLotto
-    fun getBonusNumber() = bonusNumber
 }
