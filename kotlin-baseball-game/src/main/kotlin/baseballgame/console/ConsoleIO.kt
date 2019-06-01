@@ -28,28 +28,24 @@ class ConsoleOutput {
 
         fun displayWinningMessage(history: List<GuessResult>) =
             println("\n\n승리했습니다!")
-                .also { displayHeader() }
+                .also { displayHorizontalLine() }
                 .also {
                     history
                         .withIndex()
                         .map { "${"%2d".format(it.index + 1)} : ${formatTrialNumbers(it.value)} -> ${formatResult(it.value)}" }
                         .forEach(::println)
                 }
-                .also { displayHeader() }
+                .also { displayHorizontalLine() }
         fun displayGuessResult(guessResult: GuessResult) =
             println("결과 : ${formatResult(guessResult)}")
 
-        private fun displayHeader() = println("======================")
+        private fun displayHorizontalLine() = println("======================")
 
         private fun formatTrialNumbers(guessResult: GuessResult) =
-            guessResult
-                .trialNumbers
-                .joinToString("") { it.value.toString() }
+            guessResult.trialNumbers.joinToString("") { it.value.toString() }
 
         private fun formatResult(guessResult: GuessResult) =
-            guessResult
-                .getCountOfEachMatchResult()
-                .entries
+            guessResult.getCountOfEachMatchResult().entries
                 .joinToString("") {
                     when (it.key) {
                         STRIKE -> "S"

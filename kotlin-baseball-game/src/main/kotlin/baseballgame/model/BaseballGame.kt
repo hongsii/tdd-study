@@ -9,9 +9,8 @@ class BaseballGame(
 
     constructor(answer: Numbers) : this(answer, mutableListOf())
 
-    fun guess(rawGuessNumbers: String): GuessResult {
-        val guessNumbers = Numbers.from(rawGuessNumbers)
-        return GuessResult(guessNumbers.numbers, answer.match(guessNumbers))
+    fun guess(rawGuessNumbers: String): GuessResult =
+        Numbers.from(rawGuessNumbers)
+            .let { GuessResult(it.numbers, answer.match(it)) }
             .also { _history.add(it) }
-    }
 }

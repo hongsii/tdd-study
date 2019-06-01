@@ -9,13 +9,17 @@ fun main() {
     val baseballGame = BaseballGame(answer)
 
     while (true) {
-        val guessNumbers = ConsoleInput.inputGuessNumbers()
-        val guessResult = baseballGame.guess(guessNumbers)
-        if (guessResult.win()) {
-            ConsoleOutput.displayWinningMessage(baseballGame.history)
-            break
-        } else {
-            ConsoleOutput.displayGuessResult(guessResult)
+        try {
+            val guessNumbers = ConsoleInput.inputGuessNumbers()
+            val guessResult = baseballGame.guess(guessNumbers)
+            if (guessResult.win()) {
+                ConsoleOutput.displayWinningMessage(baseballGame.history)
+                break
+            } else {
+                ConsoleOutput.displayGuessResult(guessResult)
+            }
+        } catch (e: Exception) {
+            println(e.message)
         }
     }
 }

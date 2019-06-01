@@ -4,8 +4,8 @@ data class Numbers(val numbers: List<Number>) {
 
     init {
         val size = numbers.size
-        require(SIZE == size) { "$SIZE 개의 숫자만 가능합니다." }
-        require(numbers.distinct().size == size) { "중복된 숫자가 존재합니다." }
+        require(SIZE == size) { "$SIZE 개의 숫자가 필요합니다." }
+        require(numbers.distinct().size == size) { "중복되지 않은 숫자만 가능합니다." }
     }
 
     fun match(other: Numbers): List<MatchResult> =
@@ -13,11 +13,12 @@ data class Numbers(val numbers: List<Number>) {
             .map { other.matchByEach(it) }
             .toList()
 
-    private fun matchByEach(number: IndexedValue<Number>): MatchResult {
-        val hasNumber = numbers.contains(number.value)
-        val isSameLocation = numbers[number.index] == number.value
-        return MatchResult.of(hasNumber, isSameLocation)
-    }
+    private fun matchByEach(numberWithIndex: IndexedValue<Number>): MatchResult =
+        numberWithIndex.run {
+            val hasNumber = numbers.contains(value)
+            val isSameLocation = numbers[index] == value
+            MatchResult.of(hasNumber, isSameLocation)
+        }
 
     companion object {
 
@@ -27,6 +28,7 @@ data class Numbers(val numbers: List<Number>) {
         fun from(rawNumbers: String) =
             rawNumbers
                 .toCharArray()
+                .filter { it.isDigit() }
                 .map { it.toString().toInt() }
                 .let { of(it) }
 
