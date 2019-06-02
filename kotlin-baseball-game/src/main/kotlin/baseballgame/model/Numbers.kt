@@ -10,10 +10,10 @@ data class Numbers(val numbers: List<Number>) {
 
     fun match(other: Numbers): List<MatchResult> =
         numbers.withIndex()
-            .map { other.matchByEach(it) }
+            .map { other.matchNumber(it) }
             .toList()
 
-    private fun matchByEach(numberWithIndex: IndexedValue<Number>): MatchResult =
+    private fun matchNumber(numberWithIndex: IndexedValue<Number>): MatchResult =
         numberWithIndex.run {
             val hasNumber = numbers.contains(value)
             val isSameLocation = numbers[index] == value
@@ -25,8 +25,8 @@ data class Numbers(val numbers: List<Number>) {
         const val SIZE = 3
 
         @JvmStatic
-        fun from(rawNumbers: String) =
-            rawNumbers
+        fun from(numberString: String) =
+            numberString
                 .toCharArray()
                 .filter { it.isDigit() }
                 .map { it.toString().toInt() }
