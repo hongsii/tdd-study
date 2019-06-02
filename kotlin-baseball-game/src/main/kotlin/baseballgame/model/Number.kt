@@ -3,7 +3,7 @@ package baseballgame.model
 data class Number private constructor(val value: Int) {
 
     init {
-        require(value in MIN..MAX) { "$MIN~$MAX 까지의 숫자만 가능합니다."}
+        require(value in MIN..MAX) { "$MIN~$MAX 사이의 숫자만 가능합니다."}
     }
 
     companion object {
@@ -14,10 +14,6 @@ data class Number private constructor(val value: Int) {
         private val CACHE: MutableMap<Int, Number> = mutableMapOf()
 
         @JvmStatic
-        fun of(value: Int): Number = CACHE.getOrPut(value) {
-            Number(
-                value
-            )
-        }
+        fun of(value: Int): Number = CACHE.getOrPut(value) { Number(value) }
     }
 }
