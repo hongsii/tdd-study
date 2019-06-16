@@ -1,28 +1,19 @@
 package racinggame
 
-import racinggame.model.MoveResult
+import racinggame.model.PositionRecord
 import racinggame.model.RacingResult
 
 object OutputUtils {
 
     fun displayRacingResult(racingResult: RacingResult) {
-        val trackSize = racingResult.getTrialCount()
-        val moveResults = racingResult.moveResults
-        moveResults.forEach {
-            displayTrack(trackSize)
+        val positionRecord = racingResult.allPositionRecord
+        positionRecord.forEach {
             displayPositionOfCars(it)
-            displayTrack(trackSize)
             println()
         }
     }
-
-    private fun displayPositionOfCars(moveResult: MoveResult) {
-        moveResult.positions
-            .map { "-".repeat(it) }
-            .forEach { println(it) }
-    }
-
-    private fun displayTrack(size: Int) {
-        println("=".repeat(size))
+    private fun displayPositionOfCars(positionRecord: PositionRecord) {
+        positionRecord.positions
+            .forEach { println("${it.driver} : ${"-".repeat(it.position)}") }
     }
 }

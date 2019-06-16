@@ -17,7 +17,7 @@ class CarTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car()
+        car = Car("테스터")
     }
 
     @DisplayName("If value is more than move condition($MOVE_CONDITION), car move")

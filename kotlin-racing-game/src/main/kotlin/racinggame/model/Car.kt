@@ -1,6 +1,6 @@
 package racinggame.model
 
-class Car(private var position: Int = 0) {
+class Car(val driver: String, private var position: Int = START_POSITION) {
 
     fun move(value: Int): Int =
         if (canMove(value)) {
@@ -16,11 +16,17 @@ class Car(private var position: Int = 0) {
         return value >= MOVE_CONDITION
     }
 
+    fun getPosition() = position
+
     companion object {
+
+        const val START_POSITION = 0
 
         const val MOVE_CONDITION = 4
         const val MAX_CONDITION = 9
         const val MIN_CONDITION = 0
+
+        const val EMPTY_NAME = ""
 
         val CONDITION_RANGE = MIN_CONDITION..MAX_CONDITION
     }

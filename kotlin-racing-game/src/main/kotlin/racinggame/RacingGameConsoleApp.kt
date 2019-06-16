@@ -1,15 +1,15 @@
 package racinggame
 
 import racinggame.OutputUtils.displayRacingResult
-import racinggame.console.InputUtils.inputCountOfCars
+import racinggame.console.InputUtils.inputDriversWithComma
 import racinggame.console.InputUtils.inputTrialCount
 import racinggame.model.RacingGame
 
 fun main() {
-    val countOfCars = inputCountOfCars()
+    val drivers = inputDriversWithComma()
     val trialCount = inputTrialCount()
 
-    val racingGame = RacingGame(countOfCars)
+    val racingGame = RacingGame.ready(drivers)
     val racingResult = racingGame.start(trialCount)
     displayRacingResult(racingResult)
 }

@@ -1,18 +1,29 @@
 package racinggame.model
 
-class RacingGame(private val cars: List<Car>) {
-
-    constructor(countOfCars: Int) : this(List(countOfCars) { Car() })
+class RacingGame(val cars: List<Car>) {
 
     fun start(trialCount: Int): RacingResult =
         (1..trialCount)
-            .map { moveOneTime() }
+            .map { moveAll() }
             .let { RacingResult(it) }
 
-    private fun moveOneTime(): MoveResult =
+    private fun moveAll(): PositionRecord =
         cars
-            .map { it.move(random()) }
-            .let { MoveResult(it) }
+            .map {
+                it.move(Car.CONDITION_RANGE.random())
+                Position.of(it)
+            }
+            .let { PositionRecord(it) }
 
-    private fun random() = Car.CONDITION_RANGE.random()
+    companion object {
+
+        private val COMMA_SEPARATOR = """\s*,\s*""".toRegex()
+
+        @JvmStatic
+        fun ready(driversWithComma: String): RacingGame =
+            driversWithComma
+                .split(COMMA_SEPARATOR)
+                .map { Car(it) }
+                .let { RacingGame(it) }
+    }
 }
