@@ -14,5 +14,5 @@ class RacingGame(private val cars: List<Car>) {
             .map { it.move(random()) }
             .let { MoveResult(it) }
 
-    private fun random() = (Car.MIN_CONDITION..Car.MAX_CONDITION).random()
+    private fun random() = Car.CONDITION_RANGE.random()
 }

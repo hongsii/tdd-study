@@ -10,7 +10,7 @@ class Car(private var position: Int = 0) {
         }
 
     private fun canMove(value: Int): Boolean {
-        if (value !in MIN_CONDITION..MAX_CONDITION) {
+        if (value !in CONDITION_RANGE) {
             throw IllegalArgumentException("$MIN_CONDITION ~ $MAX_CONDITION 사이의 값만 가능합니다.")
         }
         return value >= MOVE_CONDITION
@@ -21,5 +21,7 @@ class Car(private var position: Int = 0) {
         const val MOVE_CONDITION = 4
         const val MAX_CONDITION = 9
         const val MIN_CONDITION = 0
+
+        val CONDITION_RANGE = MIN_CONDITION..MAX_CONDITION
     }
 }
