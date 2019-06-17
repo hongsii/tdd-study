@@ -26,8 +26,6 @@ class Car(val driver: String, private var position: Int = START_POSITION) {
         const val MAX_CONDITION = 9
         const val MIN_CONDITION = 0
 
-        const val EMPTY_NAME = ""
-
         val CONDITION_RANGE = MIN_CONDITION..MAX_CONDITION
     }
 }

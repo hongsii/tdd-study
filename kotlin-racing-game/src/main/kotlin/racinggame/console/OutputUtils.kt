@@ -16,4 +16,9 @@ object OutputUtils {
         positionRecord.positions
             .forEach { println("${it.driver} : ${"-".repeat(it.position)}") }
     }
+
+    fun displayWinners(racingResult: RacingResult) =
+        racingResult.getWinners()
+            .joinToString(", ")
+            .also { println("$it 가 최종 우승했습니다.") }
 }
