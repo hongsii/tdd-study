@@ -4,6 +4,7 @@ data class RacingResult(val allPositionRecord: List<PositionRecord>) {
 
     fun getWinners() = allPositionRecord.last().getWinners()
 }
+
 data class PositionRecord(val positions: List<Position>) {
 
     fun getWinners(): List<String> =
