@@ -11,14 +11,8 @@ class PositionRecordTest {
     @DisplayName("Find winners")
     @ParameterizedTest(name = "[{index}] : winners {arguments}")
     @MethodSource
-    fun getWinners(nameOfWinners: List<String>) {
-        val loserPosition = 1
-        val losers = listOf(
-            Position("loser1", loserPosition),
-            Position("loser2", loserPosition)
-        )
-        val winners = nameOfWinners.map { Position(it, loserPosition + 1) }
-        val positionRecord = PositionRecord(winners + losers)
+    fun getWinners(positions: List<Position>, nameOfWinners: List<String>) {
+        val positionRecord = PositionRecord(positions)
 
         val actual = positionRecord.getWinners()
 
@@ -29,8 +23,23 @@ class PositionRecordTest {
 
         @JvmStatic
         fun getWinners() = listOf(
-            arguments(listOf("ryan")),
-            arguments(listOf("ryan", "muzi"))
+            arguments(emptyList<Position>(), emptyList<String>()),
+            arguments(
+                listOf(
+                    Position("ryan", 5),
+                    Position("muzi", 4),
+                    Position("con", 3)
+                ),
+                listOf("ryan")
+            ),
+            arguments(
+                listOf(
+                    Position("ryan", 5),
+                    Position("muzi", 5),
+                    Position("con", 3)
+                ),
+                listOf("ryan", "muzi")
+            )
         )
     }
 }

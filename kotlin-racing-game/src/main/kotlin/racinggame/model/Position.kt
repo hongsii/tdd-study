@@ -2,6 +2,8 @@ package racinggame.model
 
 data class Position(val driver: String, val position: Int) {
 
+    fun isSamePosition(other: Position): Boolean = position == other.position
+
     companion object {
 
         @JvmStatic
