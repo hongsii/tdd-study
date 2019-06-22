@@ -26,7 +26,7 @@ class CarTest {
     fun move(value: Int, expected: Int) {
         val position = car.move(value)
 
-        assertThat(position).isEqualTo(expected)
+        assertThat(position).isEqualTo(Position(car.driver, expected))
     }
 
     @DisplayName("If value is out of range($MIN_CONDITION~$MAX_CONDITION), throw exception")

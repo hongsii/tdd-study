@@ -2,12 +2,12 @@ package racinggame.model
 
 class Car(val driver: String, private var position: Int = START_POSITION) {
 
-    fun move(value: Int): Int =
+    fun move(value: Int): Position {
         if (canMove(value)) {
             ++position
-        } else {
-            position
         }
+        return Position(driver, position)
+    }
 
     private fun canMove(value: Int): Boolean {
         if (value !in CONDITION_RANGE) {
@@ -15,8 +15,6 @@ class Car(val driver: String, private var position: Int = START_POSITION) {
         }
         return value >= MOVE_CONDITION
     }
-
-    fun getPosition() = position
 
     companion object {
 

@@ -11,7 +11,6 @@ class RacingGame(val cars: List<Car>) {
         cars
             .map {
                 it.move(Car.CONDITION_RANGE.random())
-                Position.of(it)
             }
             .let { PositionRecord(it) }
 
