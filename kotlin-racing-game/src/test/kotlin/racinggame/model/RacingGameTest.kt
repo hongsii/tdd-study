@@ -1,9 +1,11 @@
 package racinggame.model
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class RacingGameTest {
@@ -36,5 +38,12 @@ class RacingGameTest {
         assertThat(racingResult.racingResult)
             .filteredOn { it.positions.size == cars.size }
             .hasSize(trialCount)
+    }
+
+    @DisplayName("Racing game must have car at least 1")
+    @ParameterizedTest
+    @EmptySource
+    fun createFromInvalidCars(cars: List<Car>) {
+        assertThatIllegalArgumentException().isThrownBy { RacingGame(cars) }
     }
 }

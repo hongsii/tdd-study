@@ -5,6 +5,10 @@ class Car(
     private var position: Int = START_POSITION
 ) {
 
+    init {
+        require(driver.isNotBlank()) { "드라이버의 이름은 필수입니다." }
+    }
+
     fun move(value: Int): Position {
         if (canMove(value)) {
             ++position

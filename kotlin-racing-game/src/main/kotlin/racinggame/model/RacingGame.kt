@@ -2,6 +2,10 @@ package racinggame.model
 
 class RacingGame(val cars: List<Car>) {
 
+    init {
+        require(cars.isNotEmpty()) { "경기를 시작할 자동차가 없습니다." }
+    }
+
     fun start(trialCount: Int): RacingResult =
         (1..trialCount)
             .map { moveAll() }

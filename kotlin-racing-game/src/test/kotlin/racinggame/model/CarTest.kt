@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments.arguments
+import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.MethodSource
 import racinggame.model.Car.Companion.MAX_CONDITION
 import racinggame.model.Car.Companion.MIN_CONDITION
@@ -34,6 +35,13 @@ class CarTest {
     @MethodSource
     fun moveByInvalidValue(value: Int) {
         assertThatIllegalArgumentException().isThrownBy { car.move(value) }
+    }
+
+    @DisplayName("Driver's name at least 1")
+    @ParameterizedTest
+    @EmptySource
+    fun createByInvalidDriver(driver: String) {
+        assertThatIllegalArgumentException().isThrownBy { Car(driver) }
     }
 
     companion object Fixture {
