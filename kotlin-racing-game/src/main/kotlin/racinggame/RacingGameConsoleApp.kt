@@ -1,9 +1,9 @@
 package racinggame
 
-import racinggame.OutputUtils.displayRacingResult
-import racinggame.OutputUtils.displayWinners
 import racinggame.console.InputUtils.inputDriversWithComma
 import racinggame.console.InputUtils.inputTrialCount
+import racinggame.console.OutputUtils.displayRacingResult
+import racinggame.console.OutputUtils.displayWinners
 import racinggame.model.RacingGame
 
 fun main() {

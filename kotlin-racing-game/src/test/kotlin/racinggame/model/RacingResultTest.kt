@@ -9,7 +9,7 @@ class RacingResultTest {
     @Test
     fun getWinners() {
         val winnerName = "ryan"
-        val positionRecord = PositionRecord(
+        val positionRecord = PositionRecorder(
             listOf(
                 Position(winnerName, 5),
                 Position("muzi", 4),
@@ -29,14 +29,14 @@ class RacingResultTest {
     @DisplayName("Get winners from last result")
     fun getWinnersFromLastResult() {
         val winnerName = "ryan"
-        val positionRecord1 = PositionRecord(
+        val positionRecord1 = PositionRecorder(
             listOf(
                 Position(winnerName, 4),
                 Position("muzi", 3),
                 Position("con", 3)
             )
         )
-        val positionRecord2 = PositionRecord(
+        val positionRecord2 = PositionRecorder(
             listOf(
                 Position(winnerName, 5),
                 Position("muzi", 4),

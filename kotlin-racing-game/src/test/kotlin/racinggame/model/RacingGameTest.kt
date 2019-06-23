@@ -33,7 +33,7 @@ class RacingGameTest {
 
         val racingResult = racingGame.start(trialCount)
 
-        assertThat(racingResult.allPositionRecord)
+        assertThat(racingResult.racingResult)
             .filteredOn { it.positions.size == cars.size }
             .hasSize(trialCount)
     }

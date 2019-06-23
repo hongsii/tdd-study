@@ -1,6 +1,6 @@
 package racinggame.model
 
-data class RacingResult(val allPositionRecord: List<PositionRecord>) {
+data class RacingResult(val racingResult: List<PositionRecorder>) {
 
-    fun getWinners() = allPositionRecord.last().getWinners()
+    fun getWinners() = racingResult.last().getWinners()
 }

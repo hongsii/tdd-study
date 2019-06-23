@@ -6,13 +6,13 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments.arguments
 import org.junit.jupiter.params.provider.MethodSource
 
-class PositionRecordTest {
+class PositionRecorderTest {
 
     @DisplayName("Find winners")
     @ParameterizedTest(name = "[{index}] : winners {arguments}")
     @MethodSource
     fun getWinners(positions: List<Position>, nameOfWinners: List<String>) {
-        val positionRecord = PositionRecord(positions)
+        val positionRecord = PositionRecorder(positions)
 
         val actual = positionRecord.getWinners()
 

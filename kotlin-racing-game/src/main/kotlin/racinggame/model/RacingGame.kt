@@ -7,12 +7,12 @@ class RacingGame(val cars: List<Car>) {
             .map { moveAll() }
             .let { RacingResult(it) }
 
-    private fun moveAll(): PositionRecord =
+    private fun moveAll(): PositionRecorder =
         cars
             .map {
                 it.move(Car.CONDITION_RANGE.random())
             }
-            .let { PositionRecord(it) }
+            .let { PositionRecorder(it) }
 
     companion object {
 
