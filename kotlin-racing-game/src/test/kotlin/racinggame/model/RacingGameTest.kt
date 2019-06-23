@@ -16,7 +16,7 @@ class RacingGameTest {
         "ryan , muzi , con",
         "ryan  ,   muzi  ,  con"
     ])
-    fun readyByDrivers(drivers: String) {
+    fun readyDrivers(drivers: String) {
         val racingGame = RacingGame.ready(drivers)
 
         assertThat(racingGame.cars)

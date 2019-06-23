@@ -2,15 +2,12 @@ package racinggame.model
 
 class PositionRecorder(val positions: List<Position>) {
 
-    fun getWinners(): List<String> {
-        if (positions.isEmpty()) return emptyList()
-        val maxPosition = findMaxPosition()
-        return findNamesOfWinner(maxPosition)
-    }
+    fun getWinners(): List<String> =
+        findMaxPosition()
+            ?.let { findNamesOfWinner(it) }
+            ?: emptyList()
 
-    private fun findMaxPosition(): Position =
-        positions
-            .maxBy { it.position }!!
+    private fun findMaxPosition(): Position? = positions.max()
 
     private fun findNamesOfWinner(maxPosition: Position): List<String> =
         positions

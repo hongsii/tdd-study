@@ -17,7 +17,7 @@ class CarTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car("테스터")
+        car = Car(TEST_DRIVER)
     }
 
     @DisplayName("If value is more than move condition($MOVE_CONDITION), car move")
@@ -26,7 +26,7 @@ class CarTest {
     fun move(value: Int, expected: Int) {
         val position = car.move(value)
 
-        assertThat(position).isEqualTo(Position(car.driver, expected))
+        assertThat(position).isEqualTo(Position(TEST_DRIVER, expected))
     }
 
     @DisplayName("If value is out of range($MIN_CONDITION~$MAX_CONDITION), throw exception")
@@ -37,6 +37,8 @@ class CarTest {
     }
 
     companion object Fixture {
+
+        const val TEST_DRIVER = "테스터"
 
         @JvmStatic
         fun move()= listOf(

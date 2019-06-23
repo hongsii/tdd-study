@@ -1,6 +1,9 @@
 package racinggame.model
 
-class Car(val driver: String, private var position: Int = START_POSITION) {
+class Car(
+    private val driver: String,
+    private var position: Int = START_POSITION
+) {
 
     fun move(value: Int): Position {
         if (canMove(value)) {
