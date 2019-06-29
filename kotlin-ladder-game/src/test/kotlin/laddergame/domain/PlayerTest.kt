@@ -1,7 +1,8 @@
 package laddergame.domain
 
+import laddergame.exception.InvalidPlayerNameException
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
+import org.assertj.core.api.Assertions.assertThatExceptionOfType
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -23,6 +24,7 @@ class PlayerTest {
     fun createWithName_fail(nameLength: Int) {
         val invalidName = "박".repeat(nameLength)
 
-        assertThatIllegalArgumentException().isThrownBy { Player(invalidName) }
+        assertThatExceptionOfType(InvalidPlayerNameException::class.java)
+            .isThrownBy { Player(invalidName) }
     }
 }
