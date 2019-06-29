@@ -10,11 +10,13 @@ enum class Direction(
     RIGHT(false, true);
 
     fun reverse(): Direction =
-        if (this == STRAIGHT) {
-            STRAIGHT
-        } else {
+        if (isSide()) {
             of(!left, !right)
+        } else {
+            STRAIGHT
         }
+
+    fun isSide() = this != STRAIGHT
 
     companion object {
 

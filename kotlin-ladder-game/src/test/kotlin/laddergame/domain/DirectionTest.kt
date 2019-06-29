@@ -11,11 +11,11 @@ class DirectionTest {
 
     @DisplayName("find direction from property")
     @ParameterizedTest
-    @CsvSource(value = [
+    @CsvSource(
         "true , false, LEFT",
         "false, false, STRAIGHT",
         "false, true , RIGHT"
-    ])
+    )
     fun of(left: Boolean, right: Boolean, expected: Direction) {
         val actual = Direction.of(left, right)
 
@@ -31,13 +31,26 @@ class DirectionTest {
 
     @DisplayName("reverse direction")
     @ParameterizedTest
-    @CsvSource(value = [
+    @CsvSource(
         "LEFT    , RIGHT",
         "STRAIGHT, STRAIGHT",
         "RIGHT   , LEFT"
-    ])
+    )
     fun reverse(direction: Direction, expected: Direction) {
         val actual = direction.reverse()
+
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @DisplayName("check side direction")
+    @ParameterizedTest
+    @CsvSource(
+        "LEFT    , true",
+        "STRAIGHT, false",
+        "RIGHT   , true"
+    )
+    fun isSide(direction: Direction, expected: Boolean) {
+        val actual = direction.isSide()
 
         assertThat(actual).isEqualTo(expected)
     }
