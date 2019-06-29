@@ -28,4 +28,17 @@ class DirectionTest {
         assertThatIllegalArgumentException()
             .isThrownBy { Direction.of(left = true, right = true) }
     }
+
+    @DisplayName("reverse direction")
+    @ParameterizedTest
+    @CsvSource(value = [
+        "LEFT    , RIGHT",
+        "STRAIGHT, STRAIGHT",
+        "RIGHT   , LEFT"
+    ])
+    fun reverse(direction: Direction, expected: Direction) {
+        val actual = direction.reverse()
+
+        assertThat(actual).isEqualTo(expected)
+    }
 }

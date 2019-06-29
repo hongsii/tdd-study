@@ -9,6 +9,13 @@ enum class Direction(
     STRAIGHT(false, false),
     RIGHT(false, true);
 
+    fun reverse(): Direction =
+        if (this == STRAIGHT) {
+            STRAIGHT
+        } else {
+            of(!left, !right)
+        }
+
     companion object {
 
         @JvmStatic
