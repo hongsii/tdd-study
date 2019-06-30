@@ -16,7 +16,7 @@ enum class Direction(
             STRAIGHT
         }
 
-    fun isSide() = this != STRAIGHT
+    fun isSide() = left || right
 
     companion object {
 
