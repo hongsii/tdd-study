@@ -2,6 +2,7 @@ package laddergame.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -13,9 +14,34 @@ class PointTest {
         "true , RIGHT",
         "false, STRAIGHT"
     )
-    fun first(hasSideDirection: Boolean, expected: Direction) {
+    fun first_withProperty_success(hasSideDirection: Boolean, expected: Direction) {
         val firstPoint = Point.first(hasSideDirection)
 
-        assertThat(firstPoint.getDirection()).isEqualTo(expected)
+        assertThat(firstPoint).isEqualTo(Point(expected))
+    }
+
+    @DisplayName("If before point has side direction, next point must have reverse direction")
+    @ParameterizedTest
+    @CsvSource(
+        "LEFT    , RIGHT",
+        "RIGHT   , LEFT"
+    )
+    fun next_reverseDirection_success(beforeDirection: Direction, expected: Direction) {
+        val beforePoint = Point(beforeDirection)
+
+        val nextPoint = beforePoint.next { Direction.STRAIGHT }
+
+        assertThat(nextPoint).isEqualTo(Point(expected))
+    }
+
+    @Test
+    @DisplayName("If before point has straight direction, next point has direction from direction strategy")
+    fun next_whenStraightDirectionToStrategyDirection_success() {
+        val beforePoint = Point(Direction.STRAIGHT)
+        val nextDirection = Direction.RIGHT
+
+        val nextPoint = beforePoint.next { nextDirection }
+
+        assertThat(nextPoint).isEqualTo(Point(nextDirection))
     }
 }

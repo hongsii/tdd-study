@@ -2,7 +2,12 @@ package laddergame.domain
 
 data class Point(private val direction: Direction) {
 
-    fun getDirection() = direction
+    fun next(directionStrategy: () -> Direction) =
+        if (direction.isSide()) {
+            Point(direction.reverse())
+        } else {
+            from(directionStrategy)
+        }
 
     companion object {
 
@@ -11,5 +16,7 @@ data class Point(private val direction: Direction) {
                 Point(Direction.RIGHT)
             else
                 Point(Direction.STRAIGHT)
+
+        fun from(directionStrategy: () -> Direction) = Point(directionStrategy())
     }
 }
