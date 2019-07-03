@@ -29,26 +29,23 @@ class DirectionTest {
             .isThrownBy { Direction.of(left = true, right = true) }
     }
 
-    @DisplayName("If before direction is side, next direction must have reverse direction")
-    @ParameterizedTest
+    @ParameterizedTest(name = "[{index}] : reverse of {0} is {1}")
     @CsvSource(
-        "LEFT    , RIGHT",
-        "RIGHT   , LEFT"
+        "LEFT, RIGHT",
+        "RIGHT, LEFT",
+        "STRAIGHT, STRAIGHT"
     )
-    fun next_reverseDirection_success(beforeDirection: Direction, expected: Direction) {
-        val nextDirection = beforeDirection.next { Direction.STRAIGHT }
-
-        assertThat(nextDirection).isEqualTo(expected)
+    fun reverse(direction: Direction, expected: Direction) {
+        assertThat(direction.reverse()).isEqualTo(expected)
     }
 
-    @Test
-    @DisplayName("If before direction is straight, next direction choose from direction strategy")
-    fun next_whenStraightDirectionToStrategyDirection_success() {
-        val beforeDirection = Direction.STRAIGHT
-        val expected = Direction.RIGHT
-
-        val nextDirection = beforeDirection.next { expected }
-
-        assertThat(nextDirection).isEqualTo(expected)
+    @ParameterizedTest(name = "{0} is side : {1}")
+    @CsvSource(
+        "LEFT, true",
+        "RIGHT, true",
+        "STRAIGHT, false"
+    )
+    fun reverse(direction: Direction, expected: Boolean) {
+        assertThat(direction.isSide()).isEqualTo(expected)
     }
 }

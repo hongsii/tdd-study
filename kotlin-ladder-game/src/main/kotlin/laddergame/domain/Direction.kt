@@ -9,13 +9,13 @@ enum class Direction(
     STRAIGHT(false, false),
     RIGHT(false, true);
 
-    fun next(directionStrategy: () -> Direction): Direction =
+    fun reverse() =
         if (isSide())
             of(!left, !right)
         else
-            directionStrategy()
+            STRAIGHT
 
-    private fun isSide() = left || right
+    fun isSide() = this == LEFT || this == RIGHT
 
     companion object {
 
