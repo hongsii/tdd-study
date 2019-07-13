@@ -16,8 +16,10 @@ class LadderLine private constructor(private val points: List<Point>) {
             if (width < MIN_POINT_COUNT) throw InvalidSizeOfLadderLineException()
 
             val points = initializeWithFirstPoint(generationStrategy)
-            generateMiddlePoints(width, points, generationStrategy)
-            generateLastPoint(points)
+                .apply {
+                    generateMiddlePoints(width, this, generationStrategy)
+                    generateLastPoint(this)
+                }
             return LadderLine(points)
         }
 
