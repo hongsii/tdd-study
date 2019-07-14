@@ -2,7 +2,7 @@ package laddergame.domain
 
 import laddergame.exception.InvalidPlayerNameException
 
-class Player(name: String) {
+data class Player(val name: String) {
 
     init {
         if (name.length !in MIN_NAME_LENGTH..MAX_NAME_LENGTH) {

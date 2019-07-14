@@ -1,9 +1,6 @@
 package laddergame.view
 
-import laddergame.domain.Direction
-import laddergame.domain.Ladder
-import laddergame.domain.LadderLine
-import laddergame.domain.Player
+import laddergame.domain.*
 
 object OutputView {
 
@@ -13,8 +10,8 @@ object OutputView {
     private const val EMPTY_SPACE = " "
     private const val LINE_SEPARATOR = "\n"
 
-    fun printPlayers(players: List<String>) =
-        players.joinToString(EMPTY_SPACE) { padWhiteSpace(it) }
+    fun printPlayers(players: Players) =
+        players.getPlayers().joinToString(EMPTY_SPACE) { padWhiteSpace(it.name) }
                 .also { println(it) }
 
     private fun padWhiteSpace(value: String) = value.padStart(MAX_PRINT_LENGTH, EMPTY_SPACE.single())
