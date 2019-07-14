@@ -48,4 +48,14 @@ class DirectionTest {
     fun isRight(direction: Direction, expected: Boolean) {
         assertThat(direction.isRight()).isEqualTo(expected)
     }
+
+    @ParameterizedTest
+    @CsvSource(
+        "LEFT , 1, 0",
+        "STRAIGHT, 1, 1",
+        "RIGHT, 1, 2"
+    )
+    fun move(direction: Direction, currentIndex: Int, expected: Int) {
+        assertThat(direction.move(currentIndex)).isEqualTo(expected)
+    }
 }

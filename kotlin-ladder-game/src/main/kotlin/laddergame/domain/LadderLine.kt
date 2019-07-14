@@ -4,10 +4,18 @@ import laddergame.exception.InvalidSizeOfLadderLineException
 
 class LadderLine private constructor(private val points: List<Point>) {
 
+    fun move(index: Int): Int {
+        if (index !in (MIN_INDEX until points.size))
+            throw IllegalArgumentException("이동 범위를 벗어났습니다.")
+
+        return points[index].move(index)
+    }
+
     fun getPoints(): List<Point> = points
 
     companion object {
 
+        const val MIN_INDEX = 0
         const val MIN_POINT_COUNT = 2
 
         private val lastPointGenerationStrategy = BooleanGenerationStrategy.NEVER_GENERATION

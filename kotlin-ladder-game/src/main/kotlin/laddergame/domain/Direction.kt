@@ -2,12 +2,13 @@ package laddergame.domain
 
 enum class Direction(
     private val left: Boolean,
-    private val right: Boolean
+    private val right: Boolean,
+    private val moveValue: Int
 ) {
 
-    LEFT(true, false),
-    STRAIGHT(false, false),
-    RIGHT(false, true);
+    LEFT(true, false, -1),
+    STRAIGHT(false, false, 0),
+    RIGHT(false, true, 1);
 
     fun reverse() =
         if (isRight() || isLeft())
@@ -18,6 +19,8 @@ enum class Direction(
     fun isRight() = this == RIGHT
 
     private fun isLeft() = this == LEFT
+
+    fun move(index: Int) = index + moveValue
 
     companion object {
 
