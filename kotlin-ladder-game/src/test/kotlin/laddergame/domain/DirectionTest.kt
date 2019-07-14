@@ -39,13 +39,13 @@ class DirectionTest {
         assertThat(direction.reverse()).isEqualTo(expected)
     }
 
-    @ParameterizedTest(name = "{0} is side : {1}")
+    @ParameterizedTest(name = "{0} is right : {1}")
     @CsvSource(
-        "LEFT, true",
         "RIGHT, true",
+        "LEFT, false",
         "STRAIGHT, false"
     )
-    fun reverse(direction: Direction, expected: Boolean) {
-        assertThat(direction.isSide()).isEqualTo(expected)
+    fun isRight(direction: Direction, expected: Boolean) {
+        assertThat(direction.isRight()).isEqualTo(expected)
     }
 }
