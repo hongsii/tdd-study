@@ -39,7 +39,7 @@ class LadderTest {
             }
     }
 
-    @DisplayName("find result index from start index")
+    @DisplayName("find result index from moveAll index")
     @ParameterizedTest(name = "[{index}] : {0} -> {1}")
     @CsvSource(
         "0, 1",
@@ -47,10 +47,14 @@ class LadderTest {
         "2, 2"
     )
     fun move(startIndex: Int, expected: Int) {
-        val ladder = Ladder.of(3, 3, BooleanGenerationStrategy.ALWAYS_GENERATION)
+        val ladder = THREE_BY_THREE_ALWAYS_GENERATION
 
         val resultIndex = ladder.move(startIndex)
 
         assertThat(resultIndex).isEqualTo(expected)
+    }
+
+    companion object {
+        val THREE_BY_THREE_ALWAYS_GENERATION = Ladder.of(3, 3, BooleanGenerationStrategy.ALWAYS_GENERATION)
     }
 }

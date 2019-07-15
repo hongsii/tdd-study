@@ -23,12 +23,12 @@ class LadderLine private constructor(private val points: List<Point>) {
         fun of(width: Int, generationStrategy: GenerationStrategy): LadderLine {
             if (width < MIN_POINT_COUNT) throw InvalidSizeOfLadderLineException()
 
-            val points = initializeWithFirstPoint(generationStrategy)
+            return initializeWithFirstPoint(generationStrategy)
                 .apply {
                     generateMiddlePoints(width, this, generationStrategy)
                     generateLastPoint(this)
                 }
-            return LadderLine(points)
+                .let { LadderLine(it) }
         }
 
         private fun initializeWithFirstPoint(generationStrategy: GenerationStrategy): MutableList<Point> =

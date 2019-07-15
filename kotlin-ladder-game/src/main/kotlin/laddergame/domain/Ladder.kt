@@ -21,7 +21,7 @@ class Ladder private constructor(private val ladderLines: List<LadderLine>) {
         const val MIN_HEIGHT = 1
         const val START_LADDER_HEIGHT_INDEX = 0
 
-        fun of(height: Int, width: Int, generationStrategy: GenerationStrategy): Ladder =
+        fun of(height: Int, width: Int, generationStrategy: GenerationStrategy = RandomGenerationStrategy()): Ladder =
             (1..height)
                 .map { LadderLine.of(width, generationStrategy) }
                 .run { Ladder(this) }
