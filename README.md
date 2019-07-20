@@ -8,3 +8,5 @@
     * [Kotlin](https://github.com/hongsii/tdd-study/tree/master/kotlin-baseball-game)
 * 블랙잭
     * [Java](https://github.com/hongsii/tdd-study/tree/master/java-blackjack)
+* 사다리 게임
+    * [Kotlin](https://github.com/hongsii/tdd-study/tree/master/kotlin-ladder-game)
