@@ -22,24 +22,25 @@ object OutputView {
     fun printLadder(ladderGame: LadderGame) {
         printMessage(
             """
-            $START_LINE_CHARACTER${printPlayers(ladderGame.players)}
-            $START_LINE_CHARACTER${printLadder(ladderGame.ladder)}
-            $START_LINE_CHARACTER${printResults(ladderGame.results)}
+            $START_LINE_CHARACTER${makePrintablePlayers(ladderGame.players)}
+            $START_LINE_CHARACTER${makePrintableLadder(ladderGame.ladder)}
+            $START_LINE_CHARACTER${makePrintableResults(ladderGame.results)}
             """.trimMargin(START_LINE_CHARACTER)
         )
     }
 
-    private fun printPlayers(players: Players) =
+    private fun makePrintablePlayers(players: Players) =
         players.getPlayers().joinToString(EMPTY_SPACE) { padWhiteSpace(it.name) }
 
-    private fun padWhiteSpace(value: String) = value.padStart(MAX_PRINT_LENGTH, EMPTY_SPACE.single())
-
-    private fun printLadder(ladder: Ladder) =
-        ladder.getLines().joinToString(separator = LINE_SEPARATOR + START_LINE_CHARACTER) {
-            EMPTY_SPACE.repeat(MAX_PRINT_LENGTH) + VERTICAL_CHARACTER + makeLineString(it)
+    private fun makePrintableLadder(ladder: Ladder) =
+        ladder.getLines().joinToString(LINE_SEPARATOR + START_LINE_CHARACTER) {
+            padWhiteSpace(EMPTY_SPACE) + VERTICAL_CHARACTER + joinLadderLine(it)
         }
 
-    private fun makeLineString(ladderLine: LadderLine): String =
+    private fun makePrintableResults(results: Results) =
+        results.getResults().joinToString(EMPTY_SPACE) { padWhiteSpace(it) }
+
+    private fun joinLadderLine(ladderLine: LadderLine): String =
         ladderLine.getPoints().joinToString(VERTICAL_CHARACTER) {
             when(it.getDirection()) {
                 Direction.RIGHT -> LINE_CHARACTER
@@ -47,15 +48,14 @@ object OutputView {
             }.repeat(MAX_PRINT_LENGTH)
         }
 
-    private fun printResults(results: Results) =
-        results.getResults().joinToString(EMPTY_SPACE) { padWhiteSpace(it) }
+    private fun padWhiteSpace(value: String) = value.padStart(MAX_PRINT_LENGTH, EMPTY_SPACE.single())
 
-    fun printPlayResult(playResult: PlayResult) =
-        printPlayResult(playResult.result)
+    fun printPlayResult(playResult: PlayResult) = printPlayResult(playResult.result)
 
     fun printTotalPlayResult(totalPlayResult: TotalPlayResult) =
         totalPlayResult.getPlayResults()
             .joinToString(LINE_SEPARATOR) { "${it.playerName} : ${it.result}" }
+            .also { printPlayResult(it) }
 
     fun printError(exception: Exception) = printMessage(exception.message)
 
