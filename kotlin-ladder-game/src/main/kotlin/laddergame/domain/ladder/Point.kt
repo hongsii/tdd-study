@@ -5,7 +5,7 @@ import laddergame.domain.ladder.strategy.GenerationStrategy
 data class Point(private val direction: Direction) {
 
     fun next(generationStrategy: GenerationStrategy): Point =
-        if (direction.isRight())
+        if (direction.hasLine())
             Point(direction.reverse())
         else
             ofRightOrStraight(generationStrategy)

@@ -11,14 +11,13 @@ enum class Direction(
     RIGHT(false, true, 1);
 
     fun reverse() =
-        if (isRight() || isLeft())
-            of(!left, !right)
-        else
-            STRAIGHT
+        when (this) {
+            RIGHT -> LEFT
+            LEFT -> RIGHT
+            else -> STRAIGHT
+        }
 
-    fun isRight() = this == RIGHT
-
-    private fun isLeft() = this == LEFT
+    fun hasLine() = this == RIGHT
 
     fun move(index: Int) = index + moveValue
 

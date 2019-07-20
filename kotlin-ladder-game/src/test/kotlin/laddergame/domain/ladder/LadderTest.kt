@@ -47,10 +47,10 @@ class LadderTest {
         "1, 0",
         "2, 2"
     )
-    fun move(startIndex: Int, expected: Int) {
+    fun move(pointIndex: Int, expected: Int) {
         val ladder = THREE_BY_THREE_ALWAYS_GENERATION
 
-        val resultIndex = ladder.move(startIndex)
+        val resultIndex = ladder.move(pointIndex)
 
         assertThat(resultIndex).isEqualTo(expected)
     }

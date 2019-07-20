@@ -46,7 +46,7 @@ class DirectionTest {
         "STRAIGHT, false"
     )
     fun isRight(direction: Direction, expected: Boolean) {
-        assertThat(direction.isRight()).isEqualTo(expected)
+        assertThat(direction.hasLine()).isEqualTo(expected)
     }
 
     @ParameterizedTest

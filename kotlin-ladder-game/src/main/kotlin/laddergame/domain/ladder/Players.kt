@@ -25,6 +25,6 @@ data class Players(private val players: List<Player>) : Indexer<Player> {
         fun fromComma(rawPlayers: String): Players =
             rawPlayers.split(",")
                 .map { Player(it) }
-                .run { Players(this) }
+                .let { Players(it) }
     }
 }
