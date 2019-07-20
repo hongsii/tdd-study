@@ -1,9 +1,9 @@
 package laddergame.domain
 
+import laddergame.domain.info.Player
+import laddergame.domain.info.Players
+import laddergame.domain.info.Results
 import laddergame.domain.ladder.LadderTest
-import laddergame.domain.ladder.Player
-import laddergame.domain.ladder.Players
-import laddergame.domain.ladder.Results
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package laddergame.domain.ladder
+package laddergame.domain.info
 
 import laddergame.exception.InvalidPlayerNameException
 

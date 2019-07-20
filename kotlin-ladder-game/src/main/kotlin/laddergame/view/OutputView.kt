@@ -3,7 +3,12 @@ package laddergame.view
 import laddergame.domain.LadderGame
 import laddergame.domain.PlayResult
 import laddergame.domain.TotalPlayResult
-import laddergame.domain.ladder.*
+import laddergame.domain.info.Player
+import laddergame.domain.info.Players
+import laddergame.domain.info.Results
+import laddergame.domain.ladder.Direction
+import laddergame.domain.ladder.Ladder
+import laddergame.domain.ladder.LadderLine
 
 object OutputView {
 

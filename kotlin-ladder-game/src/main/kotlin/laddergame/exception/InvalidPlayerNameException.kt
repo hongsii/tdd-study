@@ -1,6 +1,6 @@
 package laddergame.exception
 
-import laddergame.domain.ladder.Player
+import laddergame.domain.info.Player
 
 class InvalidPlayerNameException(message: String) : IllegalArgumentException(message) {
 

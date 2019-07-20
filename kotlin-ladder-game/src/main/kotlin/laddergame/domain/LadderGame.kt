@@ -1,8 +1,8 @@
 package laddergame.domain
 
+import laddergame.domain.info.Players
+import laddergame.domain.info.Results
 import laddergame.domain.ladder.Ladder
-import laddergame.domain.ladder.Players
-import laddergame.domain.ladder.Results
 
 class LadderGame(
     val players: Players,

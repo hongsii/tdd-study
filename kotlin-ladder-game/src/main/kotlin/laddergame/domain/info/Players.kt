@@ -1,6 +1,9 @@
-package laddergame.domain.ladder
+package laddergame.domain.info
 
-data class Players(private val players: List<Player>) : Indexer<Player> {
+import laddergame.domain.ladder.LadderLine
+
+data class Players(private val players: List<Player>) :
+    Indexer<Player> {
 
     init {
         require(players.size >= MIN_PLAYER_COUNT){ "최소 ${MIN_PLAYER_COUNT}명이 필요합니다. " }

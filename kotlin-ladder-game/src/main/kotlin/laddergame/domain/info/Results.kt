@@ -1,4 +1,4 @@
-package laddergame.domain.ladder
+package laddergame.domain.info
 
 data class Results(private val results: List<String>) : Indexer<String> {
 

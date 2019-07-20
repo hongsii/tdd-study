@@ -1,6 +1,6 @@
 package laddergame.domain
 
-import laddergame.domain.ladder.Player
+import laddergame.domain.info.Player
 
 data class TotalPlayResult(private val resultByPlayer: Map<Player, String>) {
 

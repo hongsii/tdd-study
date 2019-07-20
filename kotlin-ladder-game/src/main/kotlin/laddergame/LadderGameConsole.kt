@@ -4,9 +4,9 @@ import laddergame.LadderGameConsole.generateLadder
 import laddergame.LadderGameConsole.play
 import laddergame.LadderGameConsole.printGeneratedLadder
 import laddergame.domain.LadderGame
+import laddergame.domain.info.Players
+import laddergame.domain.info.Results
 import laddergame.domain.ladder.Ladder
-import laddergame.domain.ladder.Players
-import laddergame.domain.ladder.Results
 import laddergame.domain.ladder.strategy.RandomGenerationStrategy
 import laddergame.view.InputView
 import laddergame.view.OutputView
