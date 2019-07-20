@@ -1,4 +1,4 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
@@ -22,7 +22,11 @@ class PlayersTest {
 
         assertThat(players.getPlayers())
             .hasSize(3)
-            .containsExactly(Player("1"), Player("2"), Player("3"));
+            .containsExactly(
+                Player("1"),
+                Player("2"),
+                Player("3")
+            );
     }
 
     @ParameterizedTest
@@ -62,7 +66,11 @@ class PlayersTest {
         @JvmStatic
         fun minPlayers(): Stream<Arguments> =
             Stream.of(
-                arguments((1 until Players.MIN_PLAYER_COUNT).map { Player(it.toString()) })
+                arguments((1 until Players.MIN_PLAYER_COUNT).map {
+                    Player(
+                        it.toString()
+                    )
+                })
             )
     }
 }

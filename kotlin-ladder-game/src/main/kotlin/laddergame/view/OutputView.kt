@@ -1,6 +1,9 @@
 package laddergame.view
 
-import laddergame.domain.*
+import laddergame.domain.LadderGame
+import laddergame.domain.PlayResult
+import laddergame.domain.TotalPlayResult
+import laddergame.domain.ladder.*
 
 object OutputView {
 

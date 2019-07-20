@@ -1,5 +1,7 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
+import laddergame.domain.ladder.strategy.GenerationStrategy
+import laddergame.domain.ladder.strategy.RandomGenerationStrategy
 import laddergame.exception.InvalidHeightOfLadderException
 
 class Ladder private constructor(private val ladderLines: List<LadderLine>) {

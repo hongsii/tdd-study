@@ -1,4 +1,4 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
 interface Indexer<T> {
 

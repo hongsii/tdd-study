@@ -1,5 +1,6 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
+import laddergame.domain.ladder.strategy.BooleanGenerationStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -15,7 +16,11 @@ class PointTest {
         "false, STRAIGHT"
     )
     fun first_withProperty_success(hasSideDirection: Boolean, expected: Direction) {
-        val firstPoint = Point.ofRightOrStraight(BooleanGenerationStrategy(hasSideDirection))
+        val firstPoint = Point.ofRightOrStraight(
+            BooleanGenerationStrategy(
+                hasSideDirection
+            )
+        )
 
         assertThat(firstPoint).isEqualTo(Point(expected))
     }

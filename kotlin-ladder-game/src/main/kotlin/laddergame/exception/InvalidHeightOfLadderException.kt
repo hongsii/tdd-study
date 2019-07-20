@@ -1,6 +1,6 @@
 package laddergame.exception
 
-import laddergame.domain.Ladder
+import laddergame.domain.ladder.Ladder
 
 class InvalidHeightOfLadderException(message: String) : IllegalArgumentException(message) {
 

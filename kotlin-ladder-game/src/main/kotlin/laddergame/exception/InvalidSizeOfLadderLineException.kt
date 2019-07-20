@@ -1,6 +1,6 @@
 package laddergame.exception
 
-import laddergame.domain.LadderLine
+import laddergame.domain.ladder.LadderLine
 
 class InvalidSizeOfLadderLineException(message: String) : IllegalArgumentException(message) {
 

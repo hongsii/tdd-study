@@ -1,5 +1,6 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
+import laddergame.domain.ladder.strategy.BooleanGenerationStrategy
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.DisplayName

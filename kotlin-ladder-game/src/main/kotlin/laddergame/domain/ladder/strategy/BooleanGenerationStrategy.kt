@@ -1,6 +1,7 @@
-package laddergame.domain
+package laddergame.domain.ladder.strategy
 
-class BooleanGenerationStrategy(private val canGenerate: Boolean) : GenerationStrategy {
+class BooleanGenerationStrategy(private val canGenerate: Boolean) :
+    GenerationStrategy {
 
     override fun canGenerate() = canGenerate
 

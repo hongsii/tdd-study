@@ -1,4 +1,4 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException

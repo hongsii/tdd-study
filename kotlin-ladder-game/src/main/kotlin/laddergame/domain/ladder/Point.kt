@@ -1,4 +1,6 @@
-package laddergame.domain
+package laddergame.domain.ladder
+
+import laddergame.domain.ladder.strategy.GenerationStrategy
 
 data class Point(private val direction: Direction) {
 

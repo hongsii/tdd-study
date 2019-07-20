@@ -1,6 +1,7 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
-import laddergame.domain.Direction.*
+import laddergame.domain.ladder.Direction.*
+import laddergame.domain.ladder.strategy.BooleanGenerationStrategy
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
@@ -32,7 +33,11 @@ class LadderLineTest {
     fun generate_forPointCount_success() {
         assertThat(ladderLine.getPoints())
             .hasSize(DEFAULT_WIDTH)
-            .containsExactly(Point(RIGHT), Point(LEFT), Point(STRAIGHT))
+            .containsExactly(
+                Point(RIGHT),
+                Point(LEFT),
+                Point(STRAIGHT)
+            )
     }
 
     @DisplayName("move next index on line")

@@ -1,5 +1,9 @@
 package laddergame.domain
 
+import laddergame.domain.ladder.LadderTest
+import laddergame.domain.ladder.Player
+import laddergame.domain.ladder.Players
+import laddergame.domain.ladder.Results
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,7 +17,7 @@ class LadderGameTest {
         ladderGame = LadderGame(
             ladder = LadderTest.THREE_BY_THREE_ALWAYS_GENERATION,
             players = Players.fromComma("hong,jin,hoho"),
-            results = Results(listOf("꽝","1000","500"))
+            results = Results(listOf("꽝", "1000", "500"))
         )
     }
 

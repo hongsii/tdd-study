@@ -1,4 +1,4 @@
-package laddergame.domain
+package laddergame.domain.ladder
 
 import laddergame.exception.InvalidPlayerNameException
 import org.assertj.core.api.Assertions.assertThat
