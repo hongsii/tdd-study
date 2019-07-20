@@ -10,8 +10,6 @@ data class Point(private val direction: Direction) {
         else
             ofRightOrStraight(generationStrategy)
 
-
-
     fun getDirection() = direction
 
     fun move(index: Int) = direction.move(index)

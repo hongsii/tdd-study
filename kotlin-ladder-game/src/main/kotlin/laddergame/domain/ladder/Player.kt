@@ -5,9 +5,7 @@ import laddergame.exception.InvalidPlayerNameException
 data class Player(val name: String) {
 
     init {
-        if (name.length !in MIN_NAME_LENGTH..MAX_NAME_LENGTH) {
-            throw InvalidPlayerNameException()
-        }
+        if (name.length !in MIN_NAME_LENGTH..MAX_NAME_LENGTH) throw InvalidPlayerNameException()
     }
 
     companion object {
