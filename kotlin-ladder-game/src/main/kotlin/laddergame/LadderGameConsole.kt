@@ -1,6 +1,6 @@
 package laddergame
 
-import laddergame.LadderGameConsole.generateLadder
+import laddergame.LadderGameConsole.generateLadderGame
 import laddergame.LadderGameConsole.play
 import laddergame.LadderGameConsole.printGeneratedLadder
 import laddergame.domain.LadderGame
@@ -12,14 +12,14 @@ import laddergame.view.InputView
 import laddergame.view.OutputView
 
 fun main() {
-    val ladderGame = generateLadder()
+    val ladderGame = generateLadderGame()
     printGeneratedLadder(ladderGame)
     play(ladderGame)
 }
 
 object LadderGameConsole {
 
-    fun generateLadder(): LadderGame {
+    fun generateLadderGame(): LadderGame {
         val players = inputUniquePlayers()
         val results = Results.fromComma(InputView.inputResults())
 
