@@ -61,6 +61,14 @@ class PlayersTest {
             .isThrownBy { players.findIndexByPlayerName("fail") }
     }
 
+    @Test
+    fun duplicatedPlayers() {
+        val rawPlayers = "1,1,2"
+
+        assertThatIllegalArgumentException()
+            .isThrownBy { Players.fromComma(rawPlayers) }
+    }
+
     companion object {
 
         @JvmStatic

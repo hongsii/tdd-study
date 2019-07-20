@@ -5,7 +5,8 @@ import laddergame.domain.ladder.LadderLine
 data class Players(private val players: List<Player>) : Indexer<Player> {
 
     init {
-        require(players.size >= MIN_PLAYER_COUNT){ "최소 ${MIN_PLAYER_COUNT}명이 필요합니다. " }
+        require(players.distinct().size == players.size) { "중복된 이름을 가진 플레이어가 있습니다." }
+        require(players.size >= MIN_PLAYER_COUNT) { "최소 ${MIN_PLAYER_COUNT}명이 필요합니다. " }
     }
 
     fun findIndexByPlayerName(playerName: String) =

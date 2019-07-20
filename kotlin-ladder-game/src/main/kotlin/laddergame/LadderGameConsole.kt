@@ -20,12 +20,22 @@ fun main() {
 object LadderGameConsole {
 
     fun generateLadder(): LadderGame {
-        val players = Players.fromComma(InputView.inputPlayers())
+        val players = inputUniquePlayers()
         val results = Results.fromComma(InputView.inputResults())
 
         val height = InputView.inputHeight()
         val ladder = Ladder.of(height = height, width = players.size(), generationStrategy = RandomGenerationStrategy())
         return LadderGame(players = players, results = results, ladder = ladder)
+    }
+
+    private fun inputUniquePlayers(): Players {
+        while (true) {
+            try {
+                return Players.fromComma(InputView.inputPlayers())
+            } catch (e: Exception) {
+                OutputView.printError(e)
+            }
+        }
     }
 
     fun printGeneratedLadder(ladderGame: LadderGame) {
