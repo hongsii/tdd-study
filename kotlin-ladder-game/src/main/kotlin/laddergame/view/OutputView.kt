@@ -49,9 +49,8 @@ object OutputView {
         printPlayResult(playResult.result)
 
     fun printTotalPlayResult(totalPlayResult: TotalPlayResult) =
-        totalPlayResult.getAllResult()
-            .entries.joinToString(LINE_SEPARATOR) { "${it.key.name} : ${it.value}" }
-            .also { printMessage(it) }
+        totalPlayResult.getPlayResults()
+            .joinToString(LINE_SEPARATOR) { "${it.playerName} : ${it.result}" }
 
     fun printError(exception: Exception) = printMessage(exception.message)
 
